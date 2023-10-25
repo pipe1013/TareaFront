@@ -56,9 +56,6 @@ export class Login extends LitElement {
             <label class="form-check-label" for="rememberPassword">Recordar</label>
           </div>
           <button class="login-button" @click="${this.loginUser}">Login</button>
-          ${this.isLoggedIn
-            ? html`<button class="return-button" @click="${() => renderPage('index')}">Volver al inicio</button>`
-            : ''}
         </div>
       </div>
     `;

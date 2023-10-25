@@ -13,6 +13,17 @@ export class Index2 extends LitElement {
 
   render() {
     return html`
+    <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <i class="fas fa-plane fa-2x"></i> <!-- Ícono de avión -->
+        <h1 class="navbar-brand">AirMorreno</h1>
+      </div>
+      <div class="navbar-content">
+        <button class="btn btn-danger" id="logoutButton" @click="${() => this.logoutAndReturn()}">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <div class="d-flex ">
@@ -126,6 +137,12 @@ export class Index2 extends LitElement {
 </div>    
     `;
   }
+  logoutAndReturn() {
+    // Cerrar sesión y regresar al login
+    localStorage.removeItem('isLoggedIn');
+    renderPage('login');
+  }
 }
+
 
 customElements.define("index-2-component", Index2);

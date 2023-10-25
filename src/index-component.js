@@ -1,6 +1,8 @@
 import { LitElement, html } from "lit-element";
 import stylesScss from './index-componentStyles';
 import { renderPage } from './main.js';
+import './registration-component';
+
 
 export class Index extends LitElement {
   constructor() {
@@ -14,7 +16,18 @@ export class Index extends LitElement {
   render() {
     return html`
     <!-- Botón para cerrar sesión -->
-    <button class="logout-button" @click="${() => this.logoutAndReturn()}">Cerrar Sesión</button>
+
+     <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <i class="fas fa-plane fa-2x"></i> <!-- Ícono de avión -->
+          <h1 class="navbar-brand">AirMorreno</h1>
+        </div>
+        <div class="navbar-content">
+          <button class="btn btn-danger" id="logoutButton" @click="${() => this.logoutAndReturn()}">Cerrar Sesión</button>
+        </div>
+      </div>
+    </nav>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <div class="d-flex ">
@@ -25,7 +38,7 @@ export class Index extends LitElement {
                 <li class="nav-item">
                     <button  @click="${() => renderPage('index')}" class="nav-link active bg-light pt-2 font-weight-bold" style="color: grey; border-radius: 10px; height: 45px; width: 13.5rem; font-size: 18px;" aria-current="page">
                         <i class="fas fa-user me-2"></i> Usuarios
-                    </button>
+                    </button>   
                 </li>
                 <li class="nav-item pt-3">
                     <button  @click="${() => renderPage('index2')}" class="nav-link active bg-light pt-2 font-weight-bold" style="color: grey; border-radius: 10px; height: 45px; width: 13.5rem; font-size: 18px;" aria-current="page">
@@ -105,7 +118,7 @@ export class Index extends LitElement {
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                         <div class="d-flex justify-content-right ml-5">
-                            <button class="mt-1 text-center" style=" width: 5rem; height: 40px; border-radius: 5px; border: rgb(250, 101, 101); background-color: rgb(250, 101, 101); color: white;">Nuevo</button>
+                            <button class="mt-1 text-center" style=" width: 5rem; height: 40px; border-radius: 5px; border: rgb(250, 101, 101); background-color: rgb(250, 101, 101); color: white;class="new-button" @click="${() => this.navigateToRegistration()}">Nuevo</button>
                         </div>
                     </div>
                     <div class="container border border-dark mt-4 ml-4" style="border-radius: 1rem; width: 38rem; height: 28.5rem;">
@@ -121,11 +134,15 @@ export class Index extends LitElement {
 
     `;
   }
-
+ 
+  
   logoutAndReturn() {
     // Cerrar sesión y regresar al login
     localStorage.removeItem('isLoggedIn');
     renderPage('login');
+  }
+  navigateToRegistration() {
+    renderPage('registration'); // Redirige a la página de registro
   }
 }
 

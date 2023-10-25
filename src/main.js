@@ -1,6 +1,8 @@
 import './index-component'; // Importa tu componente Index
 import './index-2-component'; // Importa tu componente Index2
 import './login-component'; // Importa tu componente Login
+import './registration-component'; // Importa tu componente Registration
+
 
 const appContainer = document.getElementById('app');
 
@@ -14,6 +16,9 @@ export function renderPage(pageName) {
       break;
     case 'login':
       appContainer.innerHTML = '<login-component></login-component>';
+      break;
+    case 'registration':
+      appContainer.innerHTML = '<registration-component></registration-component>';
       break;
     default:
       // Página no encontrada o página de inicio por defecto
